@@ -70,7 +70,7 @@ class RoomScene(Scene):
         self.screen.blit(self.player.image, self.player.rect)
 
         # draw Hud
-        self.screen.blit(self.text_score, self.text_score.get_rect())
+        self.screen.blit(self.text_score, (10, 5))
 
     def handle_event(self):
         ...
