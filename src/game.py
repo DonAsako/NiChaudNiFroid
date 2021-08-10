@@ -1,6 +1,5 @@
 import pygame
 from src.scenes.room import RoomScene
-from src.scenes.menu import MenuScene
 
 
 class Game:
