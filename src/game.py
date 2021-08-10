@@ -1,10 +1,11 @@
 import pygame
 from src.scenes.room import RoomScene
+from src.scenes.menu import MenuScene
 
 
 class Game:
     def __init__(self):
-        self.screen = pygame.display.set_mode((720, 720))
+        self.screen = pygame.display.set_mode((1280, 720))
         self.current_scene = RoomScene(self)
         self.is_running = False
         self.clock = pygame.time.Clock()
