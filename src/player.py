@@ -1,4 +1,5 @@
 import pygame
+from pygame import time
 
 
 class Player(pygame.sprite.Sprite):
@@ -10,14 +11,35 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.bottom = 600
         self.index = 0
+        self.is_jumping = False
+        self.vel_y = 0
+        self.time_air = 0
+        self.jump_sound = pygame.mixer.Sound("assets/sound/jump.wav")
 
     def update(self, dt):
+        self.handle_event()
         if self.index >= 4:
             self.index = 0
 
         self.image = self.get_image(int(self.index), 0)
         self.index += 1 * (dt / 100)
-        print(int(self.index))
+        self.vel_y = 5 * (dt / 10)
+        if self.is_jumping:
+            if self.time_air > 0.5:
+                self.rect.bottom += self.vel_y
+            else:
+                self.rect.bottom -= self.vel_y
+                self.time_air += dt / 1000
+            if self.rect.bottom >= 600:
+                self.is_jumping = 0
+                self.rect.bottom = 600
+                self.time_air = 0
+
+    def jump(self):
+        if not self.is_jumping:
+            self.is_jumping = True
+            self.time_air = 0
+            self.jump_sound.play()
 
     def get_image(self, x: int, y: int):
         image = pygame.Surface((48, 48))
@@ -28,3 +50,7 @@ class Player(pygame.sprite.Sprite):
 
     def say(self, message: str):
         pass
+
+    def handle_event(self):
+        if pygame.key.get_pressed()[pygame.K_SPACE]:
+            self.jump()
