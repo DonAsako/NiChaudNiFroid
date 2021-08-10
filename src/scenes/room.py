@@ -31,9 +31,13 @@ class RoomScene(Scene):
         self.background_rect.left -= vel
         self.background_rect_1.left -= vel
         if self.background_rect.left <= -self.background_image.get_width():
-            self.background_rect.left = self.background_image.get_width()
+            self.background_rect.left = (
+                self.background_image.get_width() + self.background_rect_1.left
+            )
         if self.background_rect_1.left <= -self.background_image.get_width():
-            self.background_rect_1.left = self.background_image.get_width()
+            self.background_rect_1.left = (
+                self.background_image.get_width() + self.background_rect.left
+            )
 
     def draw(self):
 
