@@ -5,7 +5,6 @@ from pygame import time
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        # self.player_jump = pygame.image.load("assets/image/player_jump.png")
         self.player_run = pygame.image.load("assets/image/player_run.png")
         self.image = self.get_image(0, 0)
         self.rect = self.image.get_rect()
