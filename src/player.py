@@ -11,6 +11,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.bottomleft = (20, 600)
         self.index = 0
         self.jump_sound = pygame.mixer.Sound("assets/sound/jump.wav")
+        self.temperature = 0
 
     def update(self, dt):
         self.handle_event()
