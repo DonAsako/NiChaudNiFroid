@@ -27,8 +27,5 @@ class Player(pygame.sprite.Sprite):
         image = pygame.transform.scale(image, (48 * 2, 48 * 2))
         return image
 
-    def say(self, message: str):
-        pass
-
     def handle_event(self):
         pass
