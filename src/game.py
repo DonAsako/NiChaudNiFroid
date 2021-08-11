@@ -1,13 +1,23 @@
 import pygame
 from src.scenes.room import RoomScene
+from src.scenes.menu import MenuScene
 
 
 class Game:
     def __init__(self):
         self.screen = pygame.display.set_mode((1280, 720))
-        self.current_scene = RoomScene(self)
+        self.scenes = {
+            "menu": MenuScene(self),
+            "room": RoomScene(self),
+        }
+        self.current_scene = self.scenes["menu"]
         self.is_running = False
         self.clock = pygame.time.Clock()
+
+        # Music
+        pygame.mixer.music.load("assets/sound/music.wav")
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.pause()
 
     def run(self):
         self.is_running = True
@@ -29,3 +39,10 @@ class Game:
 
     def kill(self):
         self.is_running = False
+
+    def goto(self, to_scene: str):
+        self.current_scene = self.scenes[to_scene]
+        if to_scene == "menu":
+            pygame.mixer.music.pause()
+        elif to_scene == "room":
+            pygame.mixer.music.unpause()
