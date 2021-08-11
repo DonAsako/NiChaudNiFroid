@@ -1,7 +1,9 @@
 from src.scene import Scene
 import pygame
 from src.player import Player
+from src.enemy import Enemy
 import math
+import random
 
 
 class RoomScene(Scene):
@@ -27,16 +29,22 @@ class RoomScene(Scene):
         # Score
         self.score = 0
         self.score_sound = pygame.mixer.Sound("assets/sound/score.wav")
-        # Music
-        pygame.mixer.music.load("assets/sound/music.wav")
-        pygame.mixer.music.play(-1)
+        self.text_score = self.font.render(
+            f"Score : {int(self.score)}", False, (255, 255, 255)
+        )
+
+        # Enemy Group
+        self.enemies = pygame.sprite.Group()
 
     def update(self):
         self.handle_event()
+        vel = math.ceil(20 * (self.game.dt / 100))
         self.player.update(self.game.dt)
+        if self.score / 2 == 0:
+            self.enemies.add(Enemy(random.randint(1, 2)))
+        self.enemies.update(vel)
 
         # Background
-        vel = math.ceil(20 * (self.game.dt / 100))
         self.background_rect.left -= vel
         self.background_rect_1.left -= vel
         if self.background_rect.left <= -self.background_image.get_width():
@@ -53,6 +61,7 @@ class RoomScene(Scene):
             f"Score : {int(self.score)}", False, (255, 255, 255)
         )
         self.score += self.game.dt / 200
+        print(self.text_score)
 
     def draw(self):
 
@@ -69,8 +78,12 @@ class RoomScene(Scene):
         # draw Player
         self.screen.blit(self.player.image, self.player.rect)
 
+        # draw enemies
+        self.enemies.draw(self.screen)
+
         # draw Hud
         self.screen.blit(self.text_score, (10, 5))
 
     def handle_event(self):
-        ...
+        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+            self.game.goto("menu")
