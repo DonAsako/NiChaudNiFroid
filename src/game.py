@@ -6,6 +6,7 @@ from src.scenes.menu import MenuScene
 class Game:
     def __init__(self):
         self.screen = pygame.display.set_mode((1280, 720))
+        self.score = 0
         self.scenes = {
             "menu": MenuScene(self),
             "room": RoomScene(self),

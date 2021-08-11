@@ -27,10 +27,9 @@ class RoomScene(Scene):
         self.background_rect_1 = self.background_rect.copy()
         self.background_rect_1.left = self.background_image.get_width()
         # Score
-        self.score = 0
         self.score_sound = pygame.mixer.Sound("assets/sound/score.wav")
         self.text_score = self.font.render(
-            f"Score : {int(self.score)}", False, (255, 255, 255)
+            f"Score : {int(self.game.score)}", False, (255, 255, 255)
         )
 
         # Enemy Group
@@ -40,7 +39,7 @@ class RoomScene(Scene):
         self.handle_event()
         vel = math.ceil(20 * (self.game.dt / 100))
         self.player.update(self.game.dt)
-        if self.score / 2 == 0:
+        if self.game.score / 2 == 0:
             self.enemies.add(Enemy(random.randint(1, 2)))
         self.enemies.update(vel)
 
@@ -58,9 +57,9 @@ class RoomScene(Scene):
 
         # HUD
         self.text_score = self.font.render(
-            f"Score : {int(self.score)}", False, (255, 255, 255)
+            f"Score : {int(self.game.score)}", False, (255, 255, 255)
         )
-        self.score += self.game.dt / 200
+        self.game.score += self.game.dt / 200
         print(self.text_score)
 
     def draw(self):
