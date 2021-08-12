@@ -2,18 +2,16 @@ from src.scene import Scene
 import pygame
 from src.player import Player
 from src.enemy import Enemy
-import math
 import random
 
 
 class RoomScene(Scene):
     def __init__(self, game):
         super().__init__(game)
-        self.screen = self.game.screen
         self.player = Player()
         self.font = pygame.font.Font("assets/font/Silver.ttf", 48)
 
-        # BACKGROUND
+        # Background
         self.background_image = pygame.image.load("assets/image/background.png")
         self.background_image = pygame.transform.scale(
             self.background_image,
@@ -26,24 +24,33 @@ class RoomScene(Scene):
         self.background_rect.bottom = self.game.screen.get_height()
         self.background_rect_1 = self.background_rect.copy()
         self.background_rect_1.left = self.background_image.get_width()
+
         # Score
+        self.score = 0
         self.score_sound = pygame.mixer.Sound("assets/sound/score.wav")
         self.text_score = self.font.render(
-            f"Score : {int(self.game.score)}", False, (255, 255, 255)
+            f"Score : {int(self.score)}", False, (255, 255, 255)
+        )
+        self.text_temperature = self.font.render(
+            f"Temperature: {int(self.player.temperature)}°C", False, (255, 255, 255)
         )
 
-        # Enemy Group
+        # enemy Group
         self.enemies = pygame.sprite.Group()
+        pygame.mixer.music.load("assets/sound/music.wav")
+        pygame.mixer.music.play(-1)
 
     def update(self):
-        self.handle_event()
-        vel = math.ceil(20 * (self.game.dt / 100))
+        vel = float(20 * (self.game.dt / 100)).__ceil__()
+
         self.player.update(self.game.dt)
-        if self.game.score / 2 == 0:
-            self.enemies.add(Enemy(random.randint(1, 2)))
+
+        # spawn Enemies
+        if self.score / 2:
+            self.enemies.add(Enemy(random.randint(0, 1)))
         self.enemies.update(vel)
 
-        # Background
+        # update Background
         self.background_rect.left -= vel
         self.background_rect_1.left -= vel
         if self.background_rect.left <= -self.background_image.get_width():
@@ -55,12 +62,34 @@ class RoomScene(Scene):
                 self.background_image.get_width() + self.background_rect.left
             )
 
-        # HUD
+        # update HUD
         self.text_score = self.font.render(
-            f"Score : {int(self.game.score)}", False, (255, 255, 255)
+            f"Score : {int(self.score)}", False, (255, 255, 255)
         )
-        self.game.score += self.game.dt / 200
-        print(self.text_score)
+        self.text_temperature = self.font.render(
+            f"Temperature : {int(self.player.temperature)}°C", False, (255, 255, 255)
+        )
+
+        # append Score
+        self.score += self.game.dt / 200
+
+        # check If Player Collides Enemies
+        self.check_collides()
+
+        # check Player Temperature
+        if self.player.temperature <= -5 or self.player.temperature >= 5:
+            self.game_over()
+
+    def check_collides(self):
+        collides = pygame.sprite.spritecollide(
+            self.player, self.enemies, True, pygame.sprite.collide_mask
+        )
+
+        for collide in collides:
+            if collide.type == 0:
+                self.player.temperature += 1
+            else:
+                self.player.temperature -= 1
 
     def draw(self):
 
@@ -77,12 +106,18 @@ class RoomScene(Scene):
         # draw Player
         self.screen.blit(self.player.image, self.player.rect)
 
-        # draw enemies
+        # draw Enemies
         self.enemies.draw(self.screen)
 
         # draw Hud
         self.screen.blit(self.text_score, (10, 5))
+        self.screen.blit(
+            self.text_temperature, (10, self.text_temperature.get_height())
+        )
 
     def handle_event(self):
         if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-            self.game.goto("menu")
+            self.game.change_scene("menu")
+
+    def game_over(self):
+        self.game.change_scene("game_over")

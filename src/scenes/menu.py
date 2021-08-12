@@ -6,7 +6,6 @@ from src.player import Player
 class MenuScene(Scene):
     def __init__(self, game):
         super().__init__(game)
-        self.screen = self.game.screen
         self.font = pygame.font.Font("assets/font/Silver.ttf", 192)
         self.title_image = self.font.render(
             "Ni Chaud, Ni Froid", False, (200, 200, 200)
@@ -17,6 +16,7 @@ class MenuScene(Scene):
         ) / 2
         self.title_rect.top = 50
         self.index = 0
+
         # Button
         self.space_button = pygame.image.load("assets/image/button_space.png")
         self.button_image = self.get_animate_space()
@@ -25,6 +25,7 @@ class MenuScene(Scene):
             (self.screen.get_width() + 64) / 2,
             (self.screen.get_height() / 8) * 6,
         )
+
         # Player
         self.player_idle = pygame.image.load("assets/image/player_idle.png")
         self.player_image = self.get_animate_player()
@@ -35,11 +36,8 @@ class MenuScene(Scene):
         )
 
     def update(self):
-        self.handle_event()
-
         # Player Animation
         self.player_image = self.get_animate_player()
-
         self.index += 1 * (self.game.dt / 100)
         if self.index >= 9:
             self.index = 0
@@ -69,4 +67,4 @@ class MenuScene(Scene):
 
     def handle_event(self):
         if pygame.key.get_pressed()[pygame.K_SPACE]:
-            self.game.goto("room")
+            self.game.change_scene("room")
