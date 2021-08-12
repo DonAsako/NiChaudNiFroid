@@ -23,21 +23,10 @@ class Game:
         self.dt = self.clock.tick(60)
         self.handle_event()
 
+        # Current_scene
         self.current_scene.handle_event()
         self.current_scene.update()
         self.current_scene.draw()
-
-        # show fps
-        self.text_fps = self.font.render(
-            f"FPS : {int(self.clock.get_fps())}", False, (255, 0, 0)
-        )
-        self.screen.blit(
-            self.text_fps,
-            (
-                self.screen.get_width() - self.text_fps.get_width() - 5,
-                0,
-            ),
-        )
 
         pygame.display.flip()
 
