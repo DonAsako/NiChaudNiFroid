@@ -16,7 +16,8 @@ class Player(pygame.sprite.Sprite):
         self.air_time = 0
         self.is_jumping = False
 
-    def update(self, dt, vel):
+    def update(self, dt):
+        vel = float(50 * (dt / 100)).__ceil__()
         self.handle_event()
         self.animation(dt)
         if self.is_jumping:

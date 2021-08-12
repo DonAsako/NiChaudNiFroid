@@ -19,7 +19,7 @@ class MenuScene(Scene):
 
         # Button
         self.space_button = pygame.image.load("assets/image/button_space.png")
-        self.button_image = self.get_animate_space()
+        self.button_image = self.get_image_animation_space_key()
         self.button_rect = self.button_image.get_rect()
         self.button_rect.center = (
             (self.screen.get_width() + 64) / 2,
@@ -28,7 +28,7 @@ class MenuScene(Scene):
 
         # Player
         self.player_idle = pygame.image.load("assets/image/player_idle.png")
-        self.player_image = self.get_animate_player()
+        self.player_image = self.get_image_animation_player()
         self.player_rect = self.player_image.get_rect()
         self.player_rect.center = (
             (self.screen.get_width() + 48) / 2,
@@ -37,13 +37,13 @@ class MenuScene(Scene):
 
     def update(self):
         # Player Animation
-        self.player_image = self.get_animate_player()
+        self.player_image = self.get_image_animation_player()
         self.index += 1 * (self.game.dt / 100)
         if self.index >= 9:
             self.index = 0
 
         # Button Animation
-        self.button_image = self.get_animate_space()
+        self.button_image = self.get_image_animation_space_key()
 
     def draw(self):
         self.screen.fill((11, 11, 11))
@@ -51,13 +51,13 @@ class MenuScene(Scene):
         self.screen.blit(self.player_image, self.player_rect)
         self.screen.blit(self.button_image, self.button_rect)
 
-    def get_animate_player(self):
+    def get_image_animation_player(self):
         image = pygame.Surface((48, 48))
         image.blit(self.player_idle, (0, 0), (int(self.index) * 48, 0, 48, 48))
         image.set_colorkey((0, 0, 0))
         return pygame.transform.scale(image, (48 * 4, 48 * 4))
 
-    def get_animate_space(self):
+    def get_image_animation_space_key(self):
         image = pygame.Surface((64, 32))
         image.blit(
             self.space_button, (0, 0), ((int(self.index / 2) % 2) * 64, 0, 64, 64)

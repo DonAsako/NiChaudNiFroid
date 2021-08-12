@@ -13,6 +13,7 @@ class GameOverScene(Scene):
         self.image_sheet = pygame.image.load("assets/image/gameover.png")
         self.index = 0
         self.image = self.get_image(0)
+
         # Music
         pygame.mixer.music.load("assets/sound/gameover.ogg")
         pygame.mixer.music.play(-1)

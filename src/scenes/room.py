@@ -41,9 +41,8 @@ class RoomScene(Scene):
         pygame.mixer.music.play(-1)
 
     def update(self):
-        vel = float(50 * (self.game.dt / 100)).__ceil__()
-
-        self.player.update(self.game.dt, vel)
+        vel = float((50 + (self.score / 110)) * (self.game.dt / 100)).__ceil__()
+        self.player.update(self.game.dt)
 
         # spawn Enemies
         if len(self.enemies) == 0 or random.randint(0, 50) == 10:
@@ -77,7 +76,7 @@ class RoomScene(Scene):
         self.check_collides()
 
         # check Player Temperature
-        if self.player.temperature <= -5 or self.player.temperature >= 5:
+        if self.player.temperature < -5 or self.player.temperature > 5:
             self.game_over()
 
     def check_collides(self):

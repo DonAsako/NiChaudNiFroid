@@ -7,11 +7,10 @@ from src.scenes.gameover import GameOverScene
 class Game:
     def __init__(self):
         self.screen = pygame.display.set_mode((1280, 720))
+        pygame.display.set_caption("Ni Chaud Ni Froid")
         self.current_scene = None
         self.is_running = False
         self.clock = pygame.time.Clock()
-
-        # Music
 
     def run(self):
         self.is_running = True
