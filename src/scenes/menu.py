@@ -6,24 +6,18 @@ from src.player import Player
 class MenuScene(Scene):
     def __init__(self, game):
         super().__init__(game)
+
+        self.index = 0
+        self.row_height = self.screen.get_height() / 8
+        # Title
         self.font = pygame.font.Font("assets/font/Silver.ttf", 192)
         self.title_image = self.font.render(
             "Ni Chaud, Ni Froid", False, (200, 200, 200)
         )
         self.title_rect = self.title_image.get_rect()
-        self.title_rect.left = (
-            self.screen.get_width() - self.title_image.get_width()
-        ) / 2
-        self.title_rect.top = 50
-        self.index = 0
-
-        # Button
-        self.space_button = pygame.image.load("assets/image/button_space.png").convert()
-        self.button_image = self.get_image_animation_space_key()
-        self.button_rect = self.button_image.get_rect()
-        self.button_rect.center = (
-            (self.screen.get_width() + 64) / 2,
-            (self.screen.get_height() / 8) * 6,
+        self.title_rect.center = (
+            self.screen.get_width() / 2,
+            self.row_height * 2,
         )
 
         # Player
@@ -31,8 +25,17 @@ class MenuScene(Scene):
         self.player_image = self.get_image_animation_player()
         self.player_rect = self.player_image.get_rect()
         self.player_rect.center = (
-            (self.screen.get_width() + 48) / 2,
-            (self.screen.get_height() / 8) * 4,
+            self.screen.get_width() / 2,
+            self.row_height * 4,
+        )
+
+        # Button
+        self.space_button = pygame.image.load("assets/image/button_space.png").convert()
+        self.button_image = self.get_image_animation_space_key()
+        self.button_rect = self.button_image.get_rect()
+        self.button_rect.center = (
+            self.screen.get_width() / 2,
+            self.row_height * 6,
         )
 
     def update(self):
