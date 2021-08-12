@@ -12,7 +12,9 @@ class RoomScene(Scene):
         self.font = pygame.font.Font("assets/font/Silver.ttf", 48)
 
         # Background
-        self.background_image = pygame.image.load("assets/image/background.png")
+        self.background_image = pygame.image.load(
+            "assets/image/background.png"
+        ).convert()
         self.background_image = pygame.transform.scale(
             self.background_image,
             (

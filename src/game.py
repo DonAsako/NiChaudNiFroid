@@ -6,11 +6,12 @@ from src.scenes.gameover import GameOverScene
 
 class Game:
     def __init__(self):
-        self.screen = pygame.display.set_mode((1280, 720))
+        self.screen = pygame.display.set_mode((1280, 720), 8)
         pygame.display.set_caption("Ni Chaud Ni Froid")
         self.current_scene = None
         self.is_running = False
         self.clock = pygame.time.Clock()
+        self.font = pygame.font.Font("assets/font/Silver.ttf", 48)
 
     def run(self):
         self.is_running = True
@@ -21,10 +22,23 @@ class Game:
     def loop(self):
         self.dt = self.clock.tick(60)
         self.handle_event()
-        self.screen.fill((0, 0, 0))
+
         self.current_scene.handle_event()
         self.current_scene.update()
         self.current_scene.draw()
+
+        # show fps
+        self.text_fps = self.font.render(
+            f"FPS : {int(self.clock.get_fps())}", False, (255, 0, 0)
+        )
+        self.screen.blit(
+            self.text_fps,
+            (
+                self.screen.get_width() - self.text_fps.get_width() - 5,
+                0,
+            ),
+        )
+
         pygame.display.flip()
 
     def handle_event(self):

@@ -10,7 +10,7 @@ class GameOverScene(Scene):
         self.title_image = self.font.render("T'as perdu, t'es nul.", False, (0, 0, 0))
 
         # Gif lose
-        self.image_sheet = pygame.image.load("assets/image/gameover.png")
+        self.image_sheet = pygame.image.load("assets/image/gameover.png").convert()
         self.index = 0
         self.image = self.get_image(0)
 

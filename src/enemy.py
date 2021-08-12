@@ -10,7 +10,7 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(
             pygame.image.load(self.images[self.type]),
             (48, 48),
-        )
+        ).convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.bottom = 600 if self.type == 1 else 480
         self.rect.left = 1280

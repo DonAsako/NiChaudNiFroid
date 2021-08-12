@@ -18,7 +18,7 @@ class MenuScene(Scene):
         self.index = 0
 
         # Button
-        self.space_button = pygame.image.load("assets/image/button_space.png")
+        self.space_button = pygame.image.load("assets/image/button_space.png").convert()
         self.button_image = self.get_image_animation_space_key()
         self.button_rect = self.button_image.get_rect()
         self.button_rect.center = (
@@ -27,7 +27,7 @@ class MenuScene(Scene):
         )
 
         # Player
-        self.player_idle = pygame.image.load("assets/image/player_idle.png")
+        self.player_idle = pygame.image.load("assets/image/player_idle.png").convert()
         self.player_image = self.get_image_animation_player()
         self.player_rect = self.player_image.get_rect()
         self.player_rect.center = (
