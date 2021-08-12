@@ -46,7 +46,7 @@ class RoomScene(Scene):
         self.player.update(self.game.dt, vel)
 
         # spawn Enemies
-        if self.score / 2:
+        if len(self.enemies) == 0 or random.randint(0, 50) == 10:
             self.enemies.add(Enemy(random.randint(0, 1)))
         self.enemies.update(vel)
 

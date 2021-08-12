@@ -23,7 +23,6 @@ class GameOverScene(Scene):
         if self.index >= 20:
             self.index = 0
         self.image = self.get_image(int(self.index))
-        print(self.index)
 
     def draw(self):
         self.screen.blit(self.image, self.image.get_rect())
