@@ -43,7 +43,7 @@ class RoomScene(Scene):
     def update(self):
         vel = float(50 * (self.game.dt / 100)).__ceil__()
 
-        self.player.update(self.game.dt)
+        self.player.update(self.game.dt, vel)
 
         # spawn Enemies
         if self.score / 2:

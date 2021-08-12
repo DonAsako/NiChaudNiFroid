@@ -13,26 +13,28 @@ class Player(pygame.sprite.Sprite):
         self.temperature = 0
         # jump
         self.jump_sound = pygame.mixer.Sound("assets/sound/jump.wav")
-        self.vel_y = 10
         self.air_time = 0
+        self.is_jumping = False
 
-    def update(self, dt):
+    def update(self, dt, vel):
         self.handle_event()
         self.animation(dt)
         if self.is_jumping:
-            self.jump(dt)
+            self.air_time += dt / 1000
+            if self.air_time < 0.5:
+                self.rect.top -= vel
+            else:
+                self.rect.top += vel
 
-    def jump(self, dt):
-        self.air_time += dt / 1000
-        if self.air_time < 0.4:
-            self.rect.top -= self.vel_y * (dt / 10)
-        else:
-            self.rect.top += self.vel_y * (dt / 10)
+            if self.rect.bottom >= 600:
+                self.air_time = 0
+                self.rect.bottom = 600
+                self.is_jumping = False
 
-        if self.rect.bottom >= 600:
-            self.air_time = 0
-            self.rect.bottom = 600
-            self.is_jumping = False
+    def jump(self):
+        if self.is_jumping is not True:
+            self.is_jumping = True
+            self.jump_sound.play()
 
     def animation(self, dt):
         if self.index >= 4:
@@ -50,4 +52,4 @@ class Player(pygame.sprite.Sprite):
 
     def handle_event(self):
         if pygame.key.get_pressed()[pygame.K_SPACE]:
-            self.is_jumping = True
+            self.jump()
