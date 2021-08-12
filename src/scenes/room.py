@@ -3,6 +3,7 @@ import pygame
 from src.player import Player
 from src.enemy import Enemy
 import random
+import math
 
 
 class RoomScene(Scene):
@@ -43,7 +44,7 @@ class RoomScene(Scene):
         pygame.mixer.music.play(-1)
 
     def update(self):
-        vel = float((50 + (self.score / 110)) * (self.game.dt / 100)).__ceil__()
+        vel = math.ceil((50 + (self.score / 110)) * (self.game.dt / 100))
         self.player.update(self.game.dt)
 
         # spawn Enemies

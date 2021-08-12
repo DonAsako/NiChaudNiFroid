@@ -1,5 +1,6 @@
 import pygame
 from pygame import time
+import math
 
 
 class Player(pygame.sprite.Sprite):
@@ -19,7 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.is_jumping = False
 
     def update(self, dt):
-        vel = float(50 * (dt / 100)).__ceil__()
+        vel = math.ceil(50 * (dt / 100))
         self.handle_event()
         self.animation(dt)
         if self.is_jumping:
