@@ -25,6 +25,11 @@ python main.py # Linux
 ## Description
 
 [itch.io page](https://asakosan.itch.io/ni-chaud-ni-froid-the-game)
+
+Le but du jeu est très simple, c'est comme le jeu du dinosaure, sauf qu'il ne faut pas dépasser -5°C et 5°C.
+Notre température augmente de 1°C si on touche du feu et diminue de 1°C si on touche de la glace :)
+
+J'accepte toutes remarques sur la qualité de mon code, Si je participe c'est pas pour rien ;)
  
 ## Credits
 Images :
