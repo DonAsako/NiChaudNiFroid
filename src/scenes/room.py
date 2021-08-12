@@ -41,7 +41,7 @@ class RoomScene(Scene):
         pygame.mixer.music.play(-1)
 
     def update(self):
-        vel = float(20 * (self.game.dt / 100)).__ceil__()
+        vel = float(50 * (self.game.dt / 100)).__ceil__()
 
         self.player.update(self.game.dt)
 
