@@ -79,7 +79,7 @@ class RoomScene(Scene):
         self.check_collides()
 
         # check Player Temperature
-        if self.player.temperature < -5 or self.player.temperature > 5:
+        if abs(self.player.temperature) >= 5:
             self.game_over()
 
     def check_collides(self):

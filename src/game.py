@@ -12,6 +12,7 @@ class Game:
         self.is_running = False
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font("assets/font/Silver.ttf", 48)
+        self.dt = None
 
     def run(self):
         self.is_running = True
