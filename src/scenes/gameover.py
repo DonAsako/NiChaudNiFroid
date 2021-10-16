@@ -7,7 +7,7 @@ class GameOverScene(Scene):
         super().__init__(game)
         # Game Over Title
         self.font = pygame.font.Font("assets/font/Silver.ttf", 192)
-        self.title_image = self.font.render("T'as perdu, t'es nul.", False, (0, 0, 0))
+        self.title_image = self.font.render("GAME OVER.", False, (0, 0, 0))
 
         # Gif lose
         self.image_sheet = pygame.image.load("assets/image/gameover.png").convert()
@@ -19,7 +19,6 @@ class GameOverScene(Scene):
         pygame.mixer.music.play(-1)
 
     def update(self):
-        self.title_image = self.font.render("T'as perdu, t'es nul.", False, (0, 0, 0))
         self.index += 1 * (self.game.dt / 100)
         if self.index >= 20:
             self.index = 0
