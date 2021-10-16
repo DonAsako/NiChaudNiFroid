@@ -29,8 +29,7 @@ python main.py # Linux
 Le but du jeu est très simple, c'est comme le jeu du dinosaure, sauf qu'il ne faut pas dépasser -5°C et 5°C.
 Notre température augmente de 1°C si on touche du feu et diminue de 1°C si on touche de la glace :)
 
-J'accepte toutes remarques sur la qualité de mon code, Si je participe c'est pas pour rien ;)
- 
+
 ## Credits
 Images :
 * Background : https://edermunizz.itch.io/free-pixel-art-forest
@@ -45,4 +44,3 @@ Sounds:
 * Music:  me
 * Jump: me
 * score: me
-* gameover: ?
