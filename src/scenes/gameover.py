@@ -8,24 +8,19 @@ class GameOverScene(Scene):
         # Game Over Title
         self.font = pygame.font.Font("assets/font/Silver.ttf", 192)
         self.title_image = self.font.render("GAME OVER.", False, (0, 0, 0))
-
-        # Gif lose
-        self.image_sheet = pygame.image.load("assets/image/gameover.png").convert()
         self.index = 0
-        self.image = self.get_image(0)
-
-        # Music
-        pygame.mixer.music.load("assets/sound/gameover.ogg")
-        pygame.mixer.music.play(-1)
+        self.text = ""
 
     def update(self):
-        self.index += 1 * (self.game.dt / 100)
-        if self.index >= 20:
+        self.index += self.game.dt / 500
+        self.text += (int(self.index) - len(self.text)) * "."
+        if len(self.text) > 3:
+            self.text = ""
             self.index = 0
-        self.image = self.get_image(int(self.index))
 
     def draw(self):
-        self.screen.blit(self.image, self.image.get_rect())
+        self.screen.fill((255, 255, 255))
+        self.title_image = self.font.render("GAME OVER" + self.text, False, (0, 0, 0))
         self.screen.blit(
             self.title_image,
             (
@@ -33,15 +28,6 @@ class GameOverScene(Scene):
                 (self.screen.get_height() - self.title_image.get_height()) / 2,
             ),
         )
-
-    def get_image(self, x: int):
-        image = pygame.Surface((320, 240))
-        image.blit(self.image_sheet, (0, 0), (x * 320, 0, 320, 240))
-        image.set_colorkey((0, 0, 0))
-        image = pygame.transform.scale(
-            image, (self.screen.get_width(), self.screen.get_height())
-        )
-        return image
 
     def handle_event(self):
         if pygame.key.get_pressed()[pygame.K_ESCAPE]:
