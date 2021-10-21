@@ -29,10 +29,9 @@ class RoomScene(Scene):
         self.background_rect_1.left = self.background_image.get_width()
 
         # Score
-        self.score = 0
         self.score_sound = pygame.mixer.Sound("assets/sound/score.wav")
         self.text_score = self.font.render(
-            f"Score : {int(self.score)}", False, (255, 255, 255)
+            f"Score : {int(self.game.score)}", False, (255, 255, 255)
         )
         self.text_temperature = self.font.render(
             f"Temperature: {int(self.player.temperature)}°C", False, (255, 255, 255)
@@ -44,7 +43,7 @@ class RoomScene(Scene):
         pygame.mixer.music.play(-1)
 
     def update(self):
-        vel = math.ceil((50 + (self.score / 110)) * (self.game.dt / 100))
+        vel = math.ceil((50 + (self.game.score / 110)) * (self.game.dt / 100))
         self.player.update(self.game.dt)
 
         # spawn Enemies
@@ -66,14 +65,14 @@ class RoomScene(Scene):
 
         # update HUD
         self.text_score = self.font.render(
-            f"Score : {int(self.score)}", False, (255, 255, 255)
+            f"Score : {int(self.game.score)}", False, (255, 255, 255)
         )
         self.text_temperature = self.font.render(
             f"Temperature : {int(self.player.temperature)}°C", False, (255, 255, 255)
         )
 
         # append Score
-        self.score += self.game.dt / 200
+        self.game.score += self.game.dt / 200
 
         # check If Player Collides Enemies
         self.check_collides()

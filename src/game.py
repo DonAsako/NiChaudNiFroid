@@ -16,6 +16,7 @@ class Game:
         self.font = pygame.font.Font("assets/font/Silver.ttf", 48)
         self.dt = None
         self.settings = Settings()
+        self.score = 0
 
     def run(self):
         self.is_running = True
@@ -40,6 +41,9 @@ class Game:
                 self.kill()
 
     def kill(self):
+        with open("scores.txt", "a+") as file:
+            if self.score > 0:
+                file.write(f"{self.score:.0f}\n")
         self.is_running = False
 
     def change_scene(self, scene: str):
