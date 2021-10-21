@@ -6,7 +6,6 @@ from src.button import Button
 class SettingsScene(Scene):
     def __init__(self, game):
         super().__init__(game)
-        self.index = 0
         self.row_height = self.screen.get_height() / 8
         self.column_width = self.screen.get_width() / 8
 
