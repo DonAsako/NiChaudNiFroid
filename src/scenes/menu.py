@@ -13,7 +13,7 @@ class MenuScene(Scene):
         # Title
         self.font = pygame.font.Font("assets/font/Silver.ttf", 192)
         self.title_image = self.font.render(
-            "Ni Chaud, Ni Froid", False, ((204, 109, 145, 0.5))
+            "Ni Chaud, Ni Froid", False, (255, 255, 255, 0.5)
         )
         self.title_rect = self.title_image.get_rect()
         self.title_rect.center = (
@@ -29,9 +29,9 @@ class MenuScene(Scene):
             ],
             font=self.button_font,
             text="Play",
-            color=(204, 109, 145),
+            color="#113e25",
             shadow_color=(255, 255, 255),
-            hover_color=(198, 161, 182),
+            hover_color="#5e915a",
             text_color=(255, 255, 255),
             on_pressed=lambda: self.game.change_scene("room"),
         )
@@ -43,9 +43,9 @@ class MenuScene(Scene):
             ],
             font=self.button_font,
             text="Scores",
-            color=(204, 109, 145),
+            color="#113e25",
             shadow_color=(255, 255, 255),
-            hover_color=(198, 161, 182),
+            hover_color="#5e915a",
             text_color=(255, 255, 255),
             on_pressed=lambda: print("Scores"),
         )
@@ -57,9 +57,9 @@ class MenuScene(Scene):
             ],
             font=self.button_font,
             text="Settings",
-            color=(204, 109, 145),
+            color="#113e25",
             shadow_color=(255, 255, 255),
-            hover_color=(198, 161, 182),
+            hover_color="#5e915a",
             text_color=(255, 255, 255),
             on_pressed=lambda: print("Settings"),
         )
@@ -72,7 +72,7 @@ class MenuScene(Scene):
         self.buttons.update()
 
     def draw(self):
-        self.screen.fill((255, 190, 200))
+        self.screen.fill("#7794b4")
         self.screen.blit(self.title_image, self.title_rect)
         self.buttons.draw(self.screen)
 
