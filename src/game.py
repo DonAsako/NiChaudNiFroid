@@ -1,7 +1,9 @@
 import pygame
+from src.settings import Settings
 from src.scenes.room import RoomScene
 from src.scenes.menu import MenuScene
 from src.scenes.gameover import GameOverScene
+from src.scenes.settings import SettingsScene
 
 
 class Game:
@@ -13,6 +15,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font("assets/font/Silver.ttf", 48)
         self.dt = None
+        self.settings = Settings()
 
     def run(self):
         self.is_running = True
@@ -47,3 +50,5 @@ class Game:
             self.current_scene = RoomScene(self)
         elif scene == "game_over":
             self.current_scene = GameOverScene(self)
+        elif scene == "settings":
+            self.current_scene = SettingsScene(self)
