@@ -47,7 +47,7 @@ class MenuScene(Scene):
             shadow_color=(255, 255, 255),
             hover_color="#5e915a",
             text_color=(255, 255, 255),
-            on_pressed=lambda: print("Scores"),
+            on_pressed=lambda: self.game.change_scene("scores"),
         )
         self.settings_button = Button(
             size=[256, 64],

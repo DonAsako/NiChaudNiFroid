@@ -4,6 +4,7 @@ from src.scenes.room import RoomScene
 from src.scenes.menu import MenuScene
 from src.scenes.gameover import GameOverScene
 from src.scenes.settings import SettingsScene
+from src.scenes.scores import ScoresScene
 
 
 class Game:
@@ -17,6 +18,7 @@ class Game:
         self.dt = None
         self.settings = Settings()
         self.score = 0
+        self.score_filename = "scores.txt"
 
     def run(self):
         self.is_running = True
@@ -41,9 +43,9 @@ class Game:
                 self.kill()
 
     def kill(self):
-        with open("scores.txt", "a+") as file:
+        with open(self.score_filename, "a+") as file:
             if self.score > 0:
-                file.write(f"{self.score:.0f}\n")
+                file.write(f"{self.score:.0f};")
         self.is_running = False
 
     def change_scene(self, scene: str):
@@ -56,3 +58,5 @@ class Game:
             self.current_scene = GameOverScene(self)
         elif scene == "settings":
             self.current_scene = SettingsScene(self)
+        elif scene == "scores":
+            self.current_scene = ScoresScene(self)
