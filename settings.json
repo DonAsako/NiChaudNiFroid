@@ -1,0 +1,11 @@
+{
+    "command": {
+        "jump": 32
+    },
+    "sound": {
+        "master": 100,
+        "music": 100,
+        "voice": 100
+    },
+    "show_framerate": true
+}
