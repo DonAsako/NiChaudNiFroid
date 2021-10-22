@@ -31,7 +31,6 @@ class Enemy(pygame.sprite.Sprite):
 
     def get_image(self, x: int, y: int):
         image = pygame.Surface(self.size)
-        print(self.size)
         width, height = self.size
         image.blit(
             self.image_sheet,
