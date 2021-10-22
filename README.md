@@ -34,7 +34,6 @@ Notre température augmente de 1°C si on touche du feu et diminue de 1°C si on
 Images :
 * Background : https://edermunizz.itch.io/free-pixel-art-forest
 * Mushroom : https://caz-creates-games.itch.io/cute-mushroom-character-sprite
-* Space key: https://gerald-burke.itch.io/geralds-keys
 * fire and ice : me
 
 fonts :
