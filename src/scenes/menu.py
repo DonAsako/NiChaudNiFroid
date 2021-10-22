@@ -7,9 +7,8 @@ from src.button import Button
 class MenuScene(Scene):
     def __init__(self, game):
         super().__init__(game)
-
-        self.index = 0
         self.row_height = self.screen.get_height() / 8
+
         # Title
         self.font = pygame.font.Font("assets/font/Silver.ttf", 192)
         self.title_image = self.font.render(
