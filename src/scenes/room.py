@@ -90,12 +90,12 @@ class RoomScene(Scene):
             # Pause
             self.pause_surface = pygame.Surface(self.screen.get_size())
             self.pause_surface.set_alpha(200)
-            self.pause_button = pygame.sprite.GroupSingle(
+            self.pause_button = pygame.sprite.Group(
                 Button(
                     size=[256, 64],
                     position=[
                         self.screen.get_width() / 2,
-                        self.screen.get_height() / 2,
+                        self.screen.get_height() / 2 - 50,
                     ],
                     font=self.font,
                     text="RESUME",
@@ -104,7 +104,21 @@ class RoomScene(Scene):
                     hover_color="#f4f4f4",
                     text_color="#113e25",
                     on_pressed=self.unpause,
-                )
+                ),
+                Button(
+                    size=[256, 64],
+                    position=[
+                        self.screen.get_width() / 2,
+                        self.screen.get_height() / 2 + 50,
+                    ],
+                    font=self.font,
+                    text="QUIT",
+                    color="#ffffff",
+                    shadow_color=(255, 255, 255),
+                    hover_color="#f4f4f4",
+                    text_color="#113e25",
+                    on_pressed=self.game.kill,
+                ),
             )
         else:
             self.pause_button.update()
