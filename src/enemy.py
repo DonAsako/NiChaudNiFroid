@@ -21,7 +21,7 @@ class Enemy(pygame.sprite.Sprite):
         self.index = 0
 
     def update(self, vel, dt):
-        self.rect.left -= vel
+        self.rect.left -= vel * 1.2
         if self.rect.right <= 0:
             self.kill()
         self.index += dt / 100
