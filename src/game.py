@@ -28,7 +28,7 @@ class Game:
             self.loop()
 
     def loop(self):
-        self.dt = self.clock.tick(60)
+        self.dt = self.clock.tick(120)
         self.handle_event()
 
         # Current_scene
