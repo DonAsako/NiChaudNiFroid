@@ -1,4 +1,5 @@
 import pygame
+from pygame import sprite
 from src.settings import Settings
 from src.scenes.room import RoomScene
 from src.scenes.menu import MenuScene
@@ -14,7 +15,7 @@ class Game:
         self.current_scene = None
         self.is_running = False
         self.clock = pygame.time.Clock()
-        self.font = pygame.font.Font("assets/font/Silver.ttf", 48)
+        self.debug_font = pygame.font.Font("assets/font/Silver.ttf", 24)
         self.dt = None
         self.settings = Settings()
         self.score = 0
@@ -34,6 +35,18 @@ class Game:
         self.current_scene.handle_event()
         self.current_scene.update()
         self.current_scene.draw()
+
+        # Fps
+        if self.settings.get_setting("debug", "show_framerate"):
+            text_fps = self.debug_font.render(
+                f"FPS : {self.clock.get_fps():2.0f}",
+                False,
+                (255, 0, 0),
+            )
+
+            text_rect = text_fps.get_rect()
+            text_rect.topleft = (self.screen.get_width() - text_rect.width - 10, 10)
+            self.screen.blit(text_fps, text_rect)
 
         pygame.display.flip()
 

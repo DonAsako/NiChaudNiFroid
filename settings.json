@@ -7,5 +7,7 @@
         "music": 100,
         "voice": 100
     },
-    "show_framerate": true
+    "debug": {
+        "show_framerate": true
+    }
 }
