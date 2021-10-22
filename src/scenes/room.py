@@ -53,7 +53,7 @@ class RoomScene(Scene):
             # spawn Enemies
             if len(self.enemies) == 0 or random.randint(0, 50) == 10:
                 self.enemies.add(Enemy(random.randint(0, 1)))
-            self.enemies.update(vel)
+            self.enemies.update(vel, self.game.dt)
 
             # update Background
             self.background_rect.left -= vel
