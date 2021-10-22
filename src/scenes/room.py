@@ -117,8 +117,7 @@ class RoomScene(Scene):
         )
 
     def handle_event(self):
-        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-            self.game.change_scene("menu")
+        pass
 
     def game_over(self):
         self.game.change_scene("game_over")

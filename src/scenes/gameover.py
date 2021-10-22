@@ -30,5 +30,4 @@ class GameOverScene(Scene):
         )
 
     def handle_event(self):
-        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-            self.game.change_scene("menu")
+        pass

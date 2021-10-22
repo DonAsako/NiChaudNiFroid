@@ -77,5 +77,4 @@ class MenuScene(Scene):
         self.buttons.draw(self.screen)
 
     def handle_event(self):
-        if pygame.key.get_pressed()[pygame.K_SPACE]:
-            self.game.change_scene("room")
+        pass
