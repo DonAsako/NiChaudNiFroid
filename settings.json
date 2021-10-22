@@ -3,9 +3,8 @@
         "jump": 32
     },
     "sound": {
-        "master": 100,
         "music": 100,
-        "voice": 100
+        "effect": 100
     },
     "debug": {
         "show_framerate": true
