@@ -19,6 +19,16 @@ class MenuScene(Scene):
             self.screen.get_width() / 2,
             self.row_height * 2,
         )
+        self.background_image = pygame.image.load(
+            "assets/image/background.png"
+        ).convert()
+        self.background_image = pygame.transform.scale(
+            self.background_image,
+            (
+                self.background_image.get_width() * 2,
+                self.background_image.get_height() * 2,
+            ),
+        )
         self.button_font = pygame.font.Font("assets/font/Silver.ttf", 36)
         self.play_button = Button(
             size=[256, 64],
@@ -28,9 +38,8 @@ class MenuScene(Scene):
             ],
             font=self.button_font,
             text="Play",
-            color="#113e25",
-            shadow_color=(255, 255, 255),
-            hover_color="#5e915a",
+            color="#5a5d91",
+            hover_color="#725a91",
             text_color=(255, 255, 255),
             on_pressed=lambda: self.game.change_scene("room"),
         )
@@ -42,9 +51,8 @@ class MenuScene(Scene):
             ],
             font=self.button_font,
             text="Scores",
-            color="#113e25",
-            shadow_color=(255, 255, 255),
-            hover_color="#5e915a",
+            color="#5a5d91",
+            hover_color="#725a91",
             text_color=(255, 255, 255),
             on_pressed=lambda: self.game.change_scene("scores"),
         )
@@ -56,9 +64,8 @@ class MenuScene(Scene):
             ],
             font=self.button_font,
             text="Settings",
-            color="#113e25",
-            shadow_color=(255, 255, 255),
-            hover_color="#5e915a",
+            color="#5a5d91",
+            hover_color="#725a91",
             text_color=(255, 255, 255),
             on_pressed=lambda: self.game.change_scene("settings"),
         )
@@ -72,6 +79,13 @@ class MenuScene(Scene):
 
     def draw(self):
         self.screen.fill("#7794b4")
+        self.screen.blit(
+            self.background_image,
+            (
+                0,
+                -self.background_image.get_height() / 2,
+            ),
+        )
         self.screen.blit(self.title_image, self.title_rect)
         self.buttons.draw(self.screen)
 
