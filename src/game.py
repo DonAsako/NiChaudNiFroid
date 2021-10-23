@@ -20,6 +20,7 @@ class Game:
         self.settings = Settings()
         self.score = 0
         self.score_filename = "scores.txt"
+        self.events = []
 
     def run(self):
         self.is_running = True
@@ -51,7 +52,8 @@ class Game:
         pygame.display.flip()
 
     def handle_event(self):
-        for event in pygame.event.get():
+        self.events = pygame.event.get()
+        for event in self.events:
             if event.type == pygame.QUIT:
                 self.kill()
 
