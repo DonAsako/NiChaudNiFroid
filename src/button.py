@@ -10,7 +10,6 @@ class Button(pygame.sprite.Sprite):
         text: str,
         font: pygame.font.Font,
         color: pygame.Color,
-        shadow_color: pygame.Color,
         hover_color: pygame.Color,
         text_color: pygame.Color,
         on_pressed: None,
@@ -21,7 +20,6 @@ class Button(pygame.sprite.Sprite):
         self.text = text
         self.font = font
         self.color = color
-        self.shadow_color = shadow_color
         self.hover_color = hover_color
         self.text_color = text_color
         self.on_pressed = on_pressed
@@ -33,18 +31,12 @@ class Button(pygame.sprite.Sprite):
         # Button Draw
         pygame.draw.rect(
             self.image,
-            color=self.shadow_color,
+            color=self.color,
             rect=[0, 0, self.size[0], self.size[1]],
             width=0,
             border_radius=5,
         )
-        pygame.draw.rect(
-            self.image,
-            color=self.color,
-            rect=[0, 5, self.size[0], self.size[1] - 5],
-            width=0,
-            border_radius=5,
-        )
+
         # Title
         self.title = self.font.render(self.text.upper(), True, self.text_color)
         self.image.blit(
@@ -71,7 +63,7 @@ class Button(pygame.sprite.Sprite):
             pygame.draw.rect(
                 self.image,
                 color=self.color,
-                rect=[0, 5, self.size[0], self.size[1] - 5],
+                rect=[0, 0, self.size[0], self.size[1]],
                 width=0,
                 border_radius=5,
             )
@@ -87,7 +79,7 @@ class Button(pygame.sprite.Sprite):
         pygame.draw.rect(
             self.image,
             color=self.hover_color,
-            rect=[0, 5, self.size[0], self.size[1] - 5],
+            rect=[0, 0, self.size[0], self.size[1]],
             width=0,
             border_radius=5,
         )
