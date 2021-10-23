@@ -90,7 +90,7 @@ class RoomScene(Scene):
             # Pause
             self.pause_surface = pygame.Surface(self.screen.get_size())
             self.pause_surface.set_alpha(200)
-            self.pause_button = pygame.sprite.Group(
+            self.pause_buttons = pygame.sprite.Group(
                 Button(
                     size=[256, 64],
                     position=[
@@ -115,7 +115,10 @@ class RoomScene(Scene):
                     color="#ffffff",
                     hover_color="#EEEEEE",
                     text_color="#393E46",
-                    on_pressed=lambda: self.game.change_scene("menu"),
+                    on_pressed=lambda: (
+                        self.game.change_scene("menu"),
+                        self.game.save_score(),
+                    ),
                 ),
                 Button(
                     size=[256, 64],
@@ -132,7 +135,7 @@ class RoomScene(Scene):
                 ),
             )
         else:
-            self.pause_button.update(self.game.events)
+            self.pause_buttons.update(self.game.events)
 
     def check_collides(self):
         collides = pygame.sprite.spritecollide(
@@ -171,7 +174,7 @@ class RoomScene(Scene):
         if self.is_pause:
 
             self.screen.blit(self.pause_surface, (0, 0))
-            self.pause_button.draw(self.screen)
+            self.pause_buttons.draw(self.screen)
 
     def handle_event(self):
         if pygame.key.get_pressed()[pygame.K_ESCAPE]:
@@ -179,6 +182,7 @@ class RoomScene(Scene):
 
     def game_over(self):
         self.game.change_scene("game_over")
+        self.game.save_score()
 
     def pause(self):
         self.is_pause = True

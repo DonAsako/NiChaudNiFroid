@@ -57,10 +57,14 @@ class Game:
             if event.type == pygame.QUIT:
                 self.kill()
 
-    def kill(self):
+    def save_score(self):
         with open(self.score_filename, "a+") as file:
             if self.score > 0:
                 file.write(f"{self.score:.0f};")
+        self.score = 0
+
+    def kill(self):
+        self.save_score()
         self.is_running = False
 
     def change_scene(self, scene: str):
