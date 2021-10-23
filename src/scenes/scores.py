@@ -30,9 +30,8 @@ class ScoresScene(Scene):
                 position=[10 + 66, 10 + 24],
                 font=self.button_font,
                 text="<- Back",
-                color="#113e25",
-                shadow_color=(255, 255, 255),
-                hover_color="#5e915a",
+                color="#5a5d91",
+                hover_color="#725a91",
                 text_color=(255, 255, 255),
                 on_pressed=lambda: self.game.change_scene("menu"),
             ),  # Back Button
