@@ -132,7 +132,7 @@ class RoomScene(Scene):
                 ),
             )
         else:
-            self.pause_button.update()
+            self.pause_button.update(self.game.events)
 
     def check_collides(self):
         collides = pygame.sprite.spritecollide(

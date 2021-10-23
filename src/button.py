@@ -47,18 +47,20 @@ class Button(pygame.sprite.Sprite):
             ),
         )
 
-    def update(self):
-        self.handle_event()
+    def update(self, events):
+        self.handle_event(events)
 
-    def handle_event(self):
+    def handle_event(self, events):
         mouse_pos = pygame.mouse.get_pos()
         if (
             self.rect.top < mouse_pos[1] < self.rect.bottom
             and self.rect.left < mouse_pos[0] < self.rect.right
         ):
             self.on_hover()
-            if pygame.mouse.get_pressed(3)[0]:
-                self.on_pressed()
+            for event in events:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if pygame.mouse.get_pressed(3)[0]:
+                        self.on_pressed()
         else:
             pygame.draw.rect(
                 self.image,

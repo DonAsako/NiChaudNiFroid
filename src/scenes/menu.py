@@ -75,7 +75,7 @@ class MenuScene(Scene):
         )
 
     def update(self):
-        self.buttons.update()
+        self.buttons.update(self.game.events)
 
     def draw(self):
         self.screen.fill("#7794b4")
