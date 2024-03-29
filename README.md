@@ -1,6 +1,6 @@
 # NiChaudNiFroid
 
-## Installation
+## Install
 
 ```sh
 git clone https://github.com/DonAsako/NiChaudNiFroid.git
